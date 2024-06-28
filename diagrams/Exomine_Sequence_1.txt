@@ -1,0 +1,206 @@
+
+participant index.html
+
+participant main.js
+participant colonyMinerals.js
+participant facilityMinerals.js
+participant spaceCartButton.js
+
+
+participant mineralManager.js
+
+
+
+participant colonyManager.js
+
+participant FacilityList.js
+
+participant faciltyManager.js
+
+participant GovernorList.js
+
+participant governorManager.js
+
+participant transientState.js
+
+participant database.json
+
+
+
+governorManager.js-> database.json:fetch governor data (governors()). 
+
+governorManager.js<-- database.json: return fetch 
+
+  
+
+governorManager.js<-GovernorList.js:import governors(). 
+
+abox over governorManager.js:governors()
+
+governorManager.js-->GovernorList.js: export 
+
+  
+
+transientState.js <- GovernorList.js:import setGovernor(). 
+
+abox over transientState.js:setGovernor()
+
+
+transientState.js --> GovernorList.js: export   
+
+abox over GovernorList.js: handleGovernorChoice()
+
+GovernorList.js <-main.js:import governorList(). 
+
+abox over GovernorList.js:governorList() 
+
+note right of GovernorList.js:drop down selection of governors. 
+
+note right of GovernorList.js:Generates HTML 
+
+GovernorList.js-->main.js:export governorList(). 
+
+GovernorList.js -> database.json:import colonies()
+GovernorList.js <-- database.json: export
+
+
+faciltyManager.js-> database.json:fetch facility data (facilities()). 
+
+
+
+faciltyManager.js<-- database.json: return fetch 
+
+  
+
+faciltyManager.js<-FacilityList.js:import facilities(). 
+
+abox over faciltyManager.js:facilities()
+
+faciltyManager.js-->FacilityList.js: export 
+
+  
+
+transientState.js <- FacilityList.js:import setFacility(). 
+
+abox over transientState.js: setFacility()
+
+transientState.js --> FacilityList.js: export 
+
+  
+
+FacilityList.js <-main.js:import facilityList(). 
+
+abox over FacilityList.js:facilityList() 
+
+note right of FacilityList.js:drop down selection of facilities. 
+
+note right of FacilityList.js:Generates HTML 
+
+FacilityList.js --> main.js:export facilityList(). 
+
+abox over FacilityList.js:handleFacilityChoice()
+
+
+mineralManager.js-> database.json:fetch mineral data(minerals()). 
+
+mineralManager.js<-- database.json: return fetch 
+
+  
+
+abox over mineralManager.js:minerals()
+
+
+
+  
+
+mineralManager.js <- colonyMinerals.js :import minerals(). 
+
+abox over mineralManager.js: minerals()
+
+mineralManager.js --> colonyMinerals.js : export  
+
+mineralManager.js <- facilityMinerals.js : import minerals(). 
+
+abox over mineralManager.js:minerals()
+
+mineralManager.js --> facilityMinerals.js : export 
+
+  
+
+colonyManager.js-> database.json:fetch colony data (colonies())\n 
+
+colonyManager.js<-- database.json: return fetch 
+
+
+colonyManager.js <- colonyMinerals.js:import colonies(). 
+
+abox over colonyManager.js: colonies()
+
+colonyManager.js --> colonyMinerals.js:export 
+
+  
+
+colonyMinerals.js <-main.js:import colonyMinerals(). 
+
+abox over colonyMinerals.js:mineralToColony()
+
+abox over colonyMinerals.js:colonyMinerals() 
+
+note right of colonyMinerals.js:Display permanent state. 
+
+colonyMinerals.js --> main.js : export 
+
+  
+
+facilityMinerals.js -> FacilityList.js: import facilities(). 
+
+abox over FacilityList.js: facilities()
+
+facilityMinerals.js <-- FacilityList.js:export 
+
+  
+
+  
+
+facilityMinerals.js <-main.js:import facilityMinerals(). 
+
+abox over facilityMinerals.js: facilityMinerals() 
+
+note right of facilityMinerals.js: Displays current quantities\n minerals at selected facility.  
+
+facilityMinerals.js --> main.js : export facilityMinerals()  
+
+  
+main.js -> index.html : export html
+
+  
+
+transientState.js -> database.json: PUT 
+
+  
+
+  
+
+abox over transientState.js: spaceCartContent() 
+
+transientState.js <- main.js:import spaceCartContent(). 
+
+abox over transientState.js:spaceCartContent()
+
+transientState.js --> main.js: export spaceCartContent() 
+
+spaceCartButton.js -> transientState.js:import spaceCartContent(). 
+
+abox over transientState.js:spaceCartContent
+
+spaceCartButton.js <-- transientState.js: export spaceCartContent(). 
+
+  
+main.js -> spaceCartButton.js: import spaceCartButton()
+
+abox over spaceCartButton.js:spaceCartButton()
+note right of spaceCartButton.js:The HTML for the button
+
+spaceCartButton.js--> main.js: export 
+
+spaceCartButton.js -> index.html: export PUT changes
