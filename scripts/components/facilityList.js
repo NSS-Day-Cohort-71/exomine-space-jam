@@ -13,7 +13,7 @@ export const facilityOptions = async () => {
 
     const facilities = await response.json()
 
-    let facilityOptionsHTML ="<select name='facility'>"
+    let facilityOptionsHTML ="<div>Choose a facility <select name='facility'>"
 
     const facilityStringArray = facilities.map(
         (facility) => {
@@ -23,7 +23,7 @@ export const facilityOptions = async () => {
     )
 
     facilityOptionsHTML += facilityStringArray.join("")
-    facilityOptionsHTML += "</select>"
+    facilityOptionsHTML += "</select></div>"
 
     return facilityOptionsHTML
 }
