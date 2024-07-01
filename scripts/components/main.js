@@ -17,7 +17,7 @@ const render = async () => {
             <section class="governors__list">
                 <div>Choose a governor
                     <select id="governorDropdown">
-                        <option value="">Choose a governor...</option>
+                        <option disabled selected value="">Choose a governor...</option>
                     </select>
                 </div>
                 <div id="colonyDetails">
