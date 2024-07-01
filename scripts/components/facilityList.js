@@ -1,9 +1,15 @@
 import { setFacility } from "./TransientState.js"
+import { facilityMineralOptions } from "./facilityMinerals.js"
 
 
-const handleFacilityChoice = (event) => {
+
+const handleFacilityChoice = async (event) => {
     if (event.target.name === "facility") {
-        setFacility(parseInt(event.target.value))
+        const facilityId = parseInt(event.target.value);
+        setFacility(facilityId);
+
+        const mineralsHTML = await facilityMineralOptions(facilityId);
+        document.getElementById("mineralsList").innerHTML = mineralsHTML;
     }
 }
 
@@ -14,6 +20,8 @@ export const facilityOptions = async () => {
     const facilities = await response.json()
 
     let facilityOptionsHTML ="<div>Choose a facility <select name='facility'>"
+
+    facilityOptionsHTML += "<option value='' disabled selected>Choose a facility...</option>"
 
     const facilityStringArray = facilities.map(
         (facility) => {
