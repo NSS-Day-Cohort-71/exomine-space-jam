@@ -2,6 +2,7 @@ import { facilityOptions } from "./facilityList.js"
 import { spaceCartButton } from "./SpaceCartButton.js"
 
 
+import { handleGovernorDropdownChange, governorList } from "./governorList.js"
 
 const container = document.querySelector("#container")
 
@@ -13,8 +14,11 @@ const render = async () => {
     const theHTML = `
         <h1>Solar System Mining Marketplace</h1>
         <article class="choice">
-            <section class="governors">
-            
+            <section class="governors__list">
+                <select id="governorDropdown">
+                    <option value="">Choose a governor...</option>
+                </select>
+                <div id="colonyDetails"></div>
             </section>
 
             <section class="colony">
@@ -36,6 +40,8 @@ const render = async () => {
 
     container.innerHTML = theHTML
 
+    await governorList()
+    handleGovernorDropdownChange()
 }
 
 render()
