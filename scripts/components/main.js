@@ -1,3 +1,4 @@
+import { facilityOptions } from "./facilityList.js"
 
 
 
@@ -5,6 +6,7 @@ const container = document.querySelector("#container")
 
 const render = async () => {
 
+    const facilityHTML = await facilityOptions()
 
     const theHTML = `
         <h1>Solar System Mining Marketplace</h1>
@@ -18,7 +20,7 @@ const render = async () => {
             </section>
 
             <section class="facility">
-            
+            ${facilityHTML}
             </section>
 
         </article>
