@@ -25,7 +25,12 @@ export const facilityOptions = async () => {
 
     const facilityStringArray = facilities.map(
         (facility) => {
-            return `<option value='${facility.id}'>${facility.name}</option>`
+            if (facility.status === true) {
+                return `<option value='${facility.id}'>${facility.name}</option>`
+            } else {
+                return `<option disabled value='${facility.id}'>${facility.name}</option>`
+            }
+            
         }
 
     )
