@@ -22,14 +22,18 @@ export const governorList = async () => {
     const governorsData = await governors() // Fetch governors data
     const dropdown = document.getElementById("governorDropdown") // Get dropdown element
 
+    // Filter governors data to only include active governors
+    const activeGovernors = governorsData.filter(governor => governor.status)
+
     // Iterate through governors data to create options for dropdown
-    governorsData.forEach(governor => {
+    activeGovernors.forEach(governor => {
         const option = document.createElement("option")
         option.value = governor.id
         option.textContent = `${governor.name}`
         dropdown.appendChild(option)
     })
 }
+
 
 // Function to handle change events on the governor dropdown
 export const handleGovernorDropdownChange = async () => {
