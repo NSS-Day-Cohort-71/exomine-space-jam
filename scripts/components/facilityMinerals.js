@@ -12,16 +12,12 @@ export const facilityMineralOptions = async (facilityId) => {
     const facilityMinerals = await response.json();
 
     const facility = facilityMinerals.find(fm => fm.facilityId === facilityId)?.facility
-
     const matchedMinerals = facilityMinerals.filter(fm => fm.facilityId === facilityId);
     
-    let mineralsHTML = `<h2>Facility Minerals For ${facility.name}</h2><div>Choose a mineral`;
-    
+    let mineralsHTML = `<h2>Facility Minerals For ${facility.name}</h2>`;
     matchedMinerals.forEach(fm => {
-        mineralsHTML += `<div><input type='radio' value='${fm.mineral.id}' name="mineral">${fm.mineral.type} - Quantity: ${fm.quantity}</input></div>`;
+        mineralsHTML += `<div><input type='radio' value='${fm.mineral.id}' name="mineral">${fm.quantity} tons of ${fm.mineral.type}</input></div>`;
     });
-
-    mineralsHTML += "</div>";
     
     document.addEventListener("change", handleMineralChoice)
 

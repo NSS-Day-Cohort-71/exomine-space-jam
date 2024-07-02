@@ -1,5 +1,5 @@
 import { facilities } from "../managers/facilityManager.js";
-import { setFacility } from "./TransientState.js"
+import { setFacility, setMineral } from "./TransientState.js"
 import { facilityMineralOptions } from "./facilityMinerals.js"
 import { updateSpaceCart } from "./spaceCart.js";
 
@@ -16,6 +16,7 @@ const handleFacilityChoice = async (event) => {
         document.querySelectorAll('input[name="mineral"]').forEach(radio => {
             radio.addEventListener("change", (event) => {
                 const mineralId = parseInt(event.target.value)
+                setMineral(mineralId)
                 updateSpaceCart(mineralId, facilityId)
             })
         })
