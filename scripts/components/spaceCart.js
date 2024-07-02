@@ -14,12 +14,9 @@ export const updateSpaceCart = async (mineralId, facilityId) => {
     
     const spaceCartContainer = document.getElementById("spaceCart")
     spaceCartContainer.innerHTML = `
-        <p>${selectedMineral.quantity} ton of ${selectedMineral.type} from ${selectedFacility.name}</p>
+        <p>1 ton of ${selectedMineral.type} from ${selectedFacility.name}</p>
     `
-
-    const spaceCartButtonContainer = document.getElementById("spaceCartButtonContainer")
-    spaceCartButtonContainer.innerHTML = spaceCartButton()
-
+    
     const purchaseButton = document.getElementById("placeOrder")
     purchaseButton.addEventListener("click", () => {
         purchaseMineral(selectedMineral.id)

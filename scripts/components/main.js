@@ -38,7 +38,10 @@ const render = async () => {
         <article class="theSpaceCartSection">
             <h1>Space Cart</h1>
             <div id="spaceCart">
-              ${placeOrder}
+              
+            </div>
+            <div id="spaceCartButtonContainer">
+                ${placeOrder}
             </div>
         </article>
     `

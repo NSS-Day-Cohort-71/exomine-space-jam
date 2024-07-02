@@ -24,6 +24,7 @@ export const setColony = (chosenColony) => {
 
 export const setMineral = (chosenMineral) => {
     transientState.mineralId = chosenMineral
+    transientState.amount = 1
     console.log(transientState)
 }
 
