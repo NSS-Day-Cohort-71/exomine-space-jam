@@ -53,3 +53,7 @@ const render = async () => {
 }
 
 render()
+
+document.addEventListener("stateChanged", async event => {
+    console.log("Updating")
+})
