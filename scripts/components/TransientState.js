@@ -62,7 +62,7 @@ export const purchaseMineral = async (facilityId) => {
         },
         body: JSON.stringify({
             ...facilityMineral,
-            quantity: facility.quantity - 1 // Subtract 1 from facility mineral
+            quantity: BOB.quantity - 1 // Subtract 1 from facility mineral
         })
     };
 
