@@ -1,39 +1,22 @@
 import { governors } from "../managers/governorManager.js";
 import { setColony, setGovernor } from "./TransientState.js";
-
-// Function to fetch and display colony name/info for a selcted governor
-export const governorInfo = async (governorId) => {
-    const governorsData = await governors() // Fetch governors data
-    const governor = governorsData.find(gov => gov.id === governorId) // Find governor with specified ID
-
-    // Create HTML to display colony name/info
-    const colonyHTML = `
-        <div class="colony__minerals">
-            <header class="colony__name">
-                <h2>${governor.colony.name} Minerals</h2>
-            </header>
-        </div>
-    `
-    return colonyHTML
-}
+import { getColonyMinerals } from "./colonyMinerals.js";
 
 // Function to populate governors dropdown list
 export const governorList = async () => {
     const governorsData = await governors() // Fetch governors data
     const dropdown = document.getElementById("governorDropdown") // Get dropdown element
 
-    // Filter governors data to only include active governors
-    const activeGovernors = governorsData.filter(governor => governor.status)
-
     // Iterate through governors data to create options for dropdown
-    activeGovernors.forEach(governor => {
-        const option = document.createElement("option")
-        option.value = governor.id
-        option.textContent = `${governor.name}`
-        dropdown.appendChild(option)
-    })
-}
-
+    governorsData
+        .filter(governor => governor.status) // Filter out inactive governors
+        .forEach(governor => {
+            const option = document.createElement("option")
+            option.value = governor.id
+            option.textContent = `${governor.name}`
+            dropdown.appendChild(option)
+        })
+    }
 
 // Function to handle change events on the governor dropdown
 export const handleGovernorDropdownChange = async () => {
@@ -41,21 +24,26 @@ export const handleGovernorDropdownChange = async () => {
 
     // Add change event listener to dropdown
     dropdown.addEventListener("change", async (event) => {
-        const selectedGovernor = parseInt(event.target.value) // Get selected governor ID from dropdown
-        if (selectedGovernor) {
-            // Fetch and display governor's colony info
-            const governorDetailsHTML = await governorInfo(selectedGovernor)
-            const colonyNameContainer = document.getElementById("colonyDetails")
-            colonyNameContainer.innerHTML = governorDetailsHTML
+        // Get selected governor ID from dropdown
+        const selectedGovernor = parseInt(event.target.value)
 
-            // Update transient state for selected governor and their colony
-            setGovernor(selectedGovernor)
-            const governorsData = await governors()
-            const governor = governorsData.find(gov => gov.id === selectedGovernor)
-            setColony(governor.colonyId)
-        } else {
-            // If no governor selected, display default message
-            document.getElementById("colonyDetails").innerHTML = `<h2>Colony Minerals</h2>`
-        }
+        // Fetch and display governor's colony
+        const governorsData = await governors()
+        const governor = governorsData.find(gov => gov.id === selectedGovernor)
+        const colonyId = governor.colonyId
+        
+        // Fetch and display colony minerals
+        const colonyMinerals = await getColonyMinerals(colonyId)
+        const mineralsContainer = document.getElementById("colonyDetails")
+        mineralsContainer.innerHTML = `
+            <h2>${governor.colony.name} Minerals</h2>
+            <ul>
+                ${colonyMinerals.map(cm => `<li>${cm.quantity} tons of ${cm.mineral}</li>`).join("")}
+            </ul>
+        `
+
+        // Update transient state for selected governor and their colony
+        setGovernor(selectedGovernor)
+        setColony(governor.colonyId)
     })
 }
