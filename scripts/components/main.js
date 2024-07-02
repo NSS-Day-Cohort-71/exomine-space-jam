@@ -5,7 +5,7 @@ import { handleGovernorDropdownChange, governorList } from "./governorList.js"
 const container = document.querySelector("#container")
 
 const render = async () => {
-    const placeOrder = await spaceCartButton()
+    const placeOrder = spaceCartButton()
     const facilityHTML = await facilityOptions()
 
     const theHTML = `
@@ -37,7 +37,9 @@ const render = async () => {
 
         <article class="theSpaceCartSection">
             <h1>Space Cart</h1>
+            <div id="spaceCart">
               ${placeOrder}
+            </div>
         </article>
     `
 
