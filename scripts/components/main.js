@@ -10,46 +10,40 @@ const render = async () => {
 
     const theHTML = `
         <h1>Solar System Mining Marketplace</h1>
-        <article class="choice">
-            <section class="governors__list">
-                <div>Choose a governor
-                    <select id="governorDropdown">
-                        <option disabled selected value="">Choose a governor...</option>
-                    </select>
-                </div>
-                <div id="colonyDetails">
-                    <h2>Colony Minerals</h2>
-                </div>
-            </section>
 
-            <section class="colony">
-            
-            </section>
+        <section id="governors__list">
+            <div>Choose a governor
+                <select id="governorDropdown">
+                    <option disabled selected value="">Choose a governor...</option>
+                </select>
+            </div>
+        </section>
 
-            <section class="facility">
-                <div id="facilityDropdown">
-                    ${facilityHTML}
-                </div>
-                <div id="mineralsList"></div>
-            </section>
+        <section id="colonyDetails">
+            <h2>Colony Minerals</h2>
+        </section>
 
-        </article>
+        <section id="facility">
+            <div id="facilityDropdown">
+                ${facilityHTML}
+            </div>
+        </section>
 
-        <article class="theSpaceCartSection">
+        <section id="facilityDetails">
+            <div id="mineralsList">
+                <h2 id="facilityMineralsTitle">Facility Minerals</h2>
+            </div>
+        </section>
+
+        <section id="theSpaceCartSection">
             <h1>Space Cart</h1>
             <div id="spaceCartButtonContainer">
-            
-            <div id="spaceCart">
-              
-            </div>
-            
+                <div id="spaceCart">
+                
+                </div>
                 ${placeOrder}
-            
             </div>
-            
-            </div>
-            
-        </article>
+        </section>
     `
 
     container.innerHTML = theHTML
@@ -57,8 +51,6 @@ const render = async () => {
     await governorList()
     handleGovernorDropdownChange()
 }
-
-
 
 document.addEventListener("stateChanged", async event => {
     console.log("Updating")

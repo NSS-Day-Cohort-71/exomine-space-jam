@@ -11,5 +11,5 @@ const handleOrderClick = (clickEvent) => {
 
 export const spaceCartButton = () => {
     document.addEventListener("click", handleOrderClick)
-    return "<div class='button-container'><button id='placeOrder'>Purchase<br>Mineral</button></div>"
+    return "<button id='placeOrder'>Purchase<br>Mineral</button>"
 }
