@@ -62,8 +62,5 @@ render()
 
 document.addEventListener("stateChanged", async event => {
     console.log("Updating")
-})
-
-document.addEventListener("stateChanged", async event => {
-    console.log("Updating")
+    render()
 })

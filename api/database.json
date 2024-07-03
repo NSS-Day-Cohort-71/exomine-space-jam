@@ -172,7 +172,7 @@
       "id": 1,
       "mineralId": 1,
       "facilityId": 1,
-      "quantity": 48,
+      "quantity": 46,
       "mineral": {
         "id": 1,
         "type": "Iron"
@@ -187,7 +187,16 @@
       "id": 2,
       "mineralId": 2,
       "facilityId": 1,
-      "quantity": 70
+      "quantity": 69,
+      "mineral": {
+        "id": 2,
+        "type": "Magnesium"
+      },
+      "facility": {
+        "id": 1,
+        "name": "Astro Mining Corp",
+        "status": true
+      }
     },
     {
       "id": 3,
@@ -261,7 +270,7 @@
       "id": 1,
       "colonyId": 1,
       "mineralId": 1,
-      "quantity": 27,
+      "quantity": 29,
       "mineral": {
         "id": 1,
         "type": "Iron"
@@ -276,7 +285,16 @@
       "id": 2,
       "colonyId": 1,
       "mineralId": 2,
-      "quantity": 15
+      "quantity": 16,
+      "mineral": {
+        "id": 2,
+        "type": "Magnesium"
+      },
+      "colony": {
+        "id": 1,
+        "name": "Earth",
+        "governorId": null
+      }
     },
     {
       "id": 3,
