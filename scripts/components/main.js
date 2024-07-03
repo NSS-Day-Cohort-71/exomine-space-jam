@@ -37,12 +37,18 @@ const render = async () => {
 
         <article class="theSpaceCartSection">
             <h1>Space Cart</h1>
+            <div id="spaceCartButtonContainer">
+            
             <div id="spaceCart">
               
             </div>
-            <div id="spaceCartButtonContainer">
+            
                 ${placeOrder}
+            
             </div>
+            
+            </div>
+            
         </article>
     `
 
@@ -53,3 +59,8 @@ const render = async () => {
 }
 
 render()
+
+document.addEventListener("stateChanged", async event => {
+    console.log("Updating")
+    render()
+})
