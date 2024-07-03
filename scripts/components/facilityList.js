@@ -27,7 +27,7 @@ export const facilityOptions = async () => {
     document.addEventListener("change", handleFacilityChoice)
     const facilitiesData = await facilities()
 
-    let facilityOptionsHTML ="<div>Choose a facility <select name='facility'>"
+    let facilityOptionsHTML ="<div id='title'>Choose a facility <select name='facility'>"
     facilityOptionsHTML += "<option value='' disabled selected>Choose a facility...</option>"
 
     const facilityStringArray = facilitiesData.map(
