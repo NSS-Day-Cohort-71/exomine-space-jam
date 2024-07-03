@@ -34,11 +34,11 @@ export const setMineral = (chosenMineral) => {
 
 export const purchaseMineral = async () => {
     // Fetch colony minerals
-    const colonyMineralResponse = await fetch("http://localhost:8088/colonyMinerals?_expand=mineral&_expand=colony");
+    const colonyMineralResponse = await fetch("http://localhost:8088/colonyMinerals");
     const colonyMinerals = await colonyMineralResponse.json();
 
     // Fetch facility minerals
-    const facilityMineralResponse = await fetch("http://localhost:8088/facilityMinerals?_expand=mineral&_expand=facility");
+    const facilityMineralResponse = await fetch("http://localhost:8088/facilityMinerals");
     const facilityMinerals = await facilityMineralResponse.json();
 
     // Find the specific facility mineral to subtract from
@@ -47,7 +47,7 @@ export const purchaseMineral = async () => {
     // Find the specific colony mineral to add to
     const colonyMineralToUpdate = colonyMinerals.find(cm => cm.mineralId === transientState.mineralId && cm.colonyId === transientState.colonyId);
 
-    // Create PUT request options for updating facility mineral
+    // Update the facility mineral quantity
     const facilityOptions = {
         method: 'PUT',
         headers: {
@@ -59,23 +59,39 @@ export const purchaseMineral = async () => {
         })
     };
 
-    // Execute PUT request to update facility mineral
     await fetch(`http://localhost:8088/facilityMinerals/${facilityMineralToUpdate.id}`, facilityOptions);
 
-    // Create PUT request options for updating colony mineral
-    const colonyOptions = {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            ...colonyMineralToUpdate,
-            quantity: colonyMineralToUpdate.quantity + 1 // Add 1 to colony mineral
-        })
-    };
+    // Update the colony mineral quantity if it exists, otherwise add it
+    if (colonyMineralToUpdate) {
+        const colonyOptions = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                ...colonyMineralToUpdate,
+                quantity: colonyMineralToUpdate.quantity + 1 // Add 1 to colony mineral
+            })
+        };
 
-    // Execute PUT request to update colony mineral
-    await fetch(`http://localhost:8088/colonyMinerals/${colonyMineralToUpdate.id}`, colonyOptions);
+        await fetch(`http://localhost:8088/colonyMinerals/${colonyMineralToUpdate.id}`, colonyOptions);
+    } else {
+        const newColonyMineral = {
+            colonyId: transientState.colonyId,
+            mineralId: transientState.mineralId,
+            quantity: transientState.amount // Start with 1 unit
+        };
+
+        const colonyOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newColonyMineral)
+        };
+
+        await fetch("http://localhost:8088/colonyMinerals", colonyOptions);
+    }
 
     // Dispatch event to indicate state change
     document.dispatchEvent(new CustomEvent("stateChanged"));

@@ -58,9 +58,11 @@ const render = async () => {
     handleGovernorDropdownChange()
 }
 
-render()
+
 
 document.addEventListener("stateChanged", async event => {
     console.log("Updating")
     render()
 })
+
+render()

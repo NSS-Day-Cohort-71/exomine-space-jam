@@ -17,8 +17,8 @@ export const updateSpaceCart = async (mineralId, facilityId) => {
         <p>1 ton of ${selectedMineral.type} from ${selectedFacility.name}</p>
     `
     
-    const purchaseButton = document.getElementById("placeOrder")
-    purchaseButton.addEventListener("click", () => {
-        purchaseMineral(selectedMineral.id)
-    })
+    // const purchaseButton = document.getElementById("placeOrder")
+    // purchaseButton.addEventListener("click", () => {
+    //     purchaseMineral(selectedMineral.id)
+    // })
 }
