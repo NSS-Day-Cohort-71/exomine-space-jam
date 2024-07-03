@@ -1,0 +1,98 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container for the entire layout */
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header section */
+h1 {
+    text-align: center;
+    width: 100%;
+    margin: 20px 0;
+}
+
+/* Governors list and facility sections */
+#mainContent {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#governors__list, #facility {
+    width: 48%;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+}
+
+/* Colony details section */
+#colonyDetails {
+    width: 48%;
+    margin-left: auto;
+    border: 1px solid #ccc;
+}
+
+#colonyDetails, #facilityDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    text-align: center; /* Center text content */
+}
+
+#mineralsList {
+    width: 100%;
+    text-align: center; /* Center text content within mineralsList */
+}
+
+
+/* Facility details and space cart sections */
+#lowerContent {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+}
+
+#facilityDetails {
+    width: 66%;
+    border: 1px solid #ccc;
+}
+
+#theSpaceCartSection {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Space out elements evenly */
+    align-items: center; /* Center align elements */
+    padding: 20px;
+    border: 1px solid #ccc;
+    height: 100%; /* Ensure the section takes full height available */
+    text-align: center; /* Center text content */
+}
+
+#spaceCart {
+    width: 100%; /* Full width to prevent button shift */
+    text-align: center; /* Center text content within spaceCart */
+}
+
+#spaceCartButtonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Ensure container spans full width for centering */
+    margin-top: auto; /* Push the button to the bottom */
+}
+
+
+
