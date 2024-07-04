@@ -1,5 +1,5 @@
 import { governors } from "../managers/governorManager.js";
-import { setColony, setGovernor } from "./TransientState.js";
+import { setColony, setGovernor, transientState } from "./TransientState.js";
 import { getColonyMinerals } from "./colonyMinerals.js";
 
 // Function to populate governors dropdown list
@@ -15,6 +15,10 @@ export const governorList = async () => {
             option.value = governor.id
             option.textContent = `${governor.name}`
             dropdown.appendChild(option)
+
+            if (governor.id === transientState.governorId) {
+                option.selected = true // Selction the current governor
+            }
         })
     }
 
@@ -41,9 +45,12 @@ export const handleGovernorDropdownChange = async () => {
                 ${colonyMinerals.map(cm => `<li>${cm.quantity} tons of ${cm.mineral}</li>`).join("")}
             </ul>
         `
-
+        
         // Update transient state for selected governor and their colony
         setGovernor(selectedGovernor)
         setColony(governor.colonyId)
+
+        // Set the selected option in the dropdown
+        dropdown.value = selectedGovernor.toString()
     })
 }

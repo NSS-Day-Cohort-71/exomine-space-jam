@@ -1,7 +1,5 @@
 import { facilities } from "../managers/facilityManager.js"
 import { minerals } from "../managers/mineralManager.js"
-import { spaceCartButton } from "./SpaceCartButton.js"
-import { purchaseMineral } from "./TransientState.js"
 
 export const updateSpaceCart = async (mineralId, facilityId) => {
     const mineralsData = await minerals()
@@ -16,9 +14,4 @@ export const updateSpaceCart = async (mineralId, facilityId) => {
     spaceCartContainer.innerHTML = `
         <p>1 ton of ${selectedMineral.type} from ${selectedFacility.name}</p>
     `
-    
-    // const purchaseButton = document.getElementById("placeOrder")
-    // purchaseButton.addEventListener("click", () => {
-    //     purchaseMineral(selectedMineral.id)
-    // })
 }
