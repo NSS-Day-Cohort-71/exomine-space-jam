@@ -1,11 +1,25 @@
-import { purchaseMineral } from "./TransientState.js"
+import { purchaseMineral, transientState } from "./TransientState.js"
 
-const handleOrderClick = (clickEvent) => {
-    if(clickEvent.target.id === "placeOrder") {
-        purchaseMineral()
+const handleOrderClick = async (clickEvent) => {
+    if (clickEvent.target.id === "placeOrder") {
 
-        // const updating = new CustomEvent("stateChanged")
-        // document.dispatchEvent(updating)
+        // Preserve governor and facility selections
+        const currentGovernorId = transientState.governorId
+        const currentFacilityId = transientState.facilityId
+        console.log(currentGovernorId, currentFacilityId)
+
+        // Invoke purchaseMineral function
+        await purchaseMineral()
+
+        // Clear the selected radio button
+        document.querySelectorAll('input[name="mineral"]').forEach(radio => radio.checked = false)
+        // Clear the space cart text
+        document.getElementById("spaceCart").innerHTML = ""
+
+        // Restore governor and facility selections
+        transientState.governorId = currentGovernorId
+        transientState.facilityId = currentFacilityId
+        console.log(transientState)
     }
 }
 

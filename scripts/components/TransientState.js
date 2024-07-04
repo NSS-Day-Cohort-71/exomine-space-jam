@@ -1,6 +1,9 @@
-import { facilityMineralOptions } from "./facilityMinerals.js"
+import { colonyMinerals } from "../managers/colonyMineralsManager.js"
+import { facilityMinerals } from "../managers/facilityMineralsManager.js"
+import { updateColonyMineralsDOM, updateFacilityMineralsDOM } from "./updateDOM.js"
 
-const transientState = {
+// Define transientState and set intial values
+export const transientState = {
     "governorId": 0,
     "facilityId": 0,
     "colonyId": 0,
@@ -8,6 +11,7 @@ const transientState = {
     "amount": 0,
 }
 
+// Setter functions
 export const setGovernor = (chosenGovernor) => {
     transientState.governorId = chosenGovernor
     console.log(transientState)
@@ -30,22 +34,17 @@ export const setMineral = (chosenMineral) => {
     console.log(transientState)
 }
 
-
-
+// Function to update quantities of minerals when Purchase Mineral button is clicked
 export const purchaseMineral = async () => {
     // Fetch colony minerals
-    const colonyMineralResponse = await fetch("http://localhost:8088/colonyMinerals");
-    const colonyMinerals = await colonyMineralResponse.json();
+    const colonyMineralsData = await colonyMinerals()
+    // Find the specific colony mineral to add to
+    const colonyMineralToUpdate = colonyMineralsData.find(cm => cm.mineralId === transientState.mineralId && cm.colonyId === transientState.colonyId);
 
     // Fetch facility minerals
-    const facilityMineralResponse = await fetch("http://localhost:8088/facilityMinerals");
-    const facilityMinerals = await facilityMineralResponse.json();
-
+    const facilityMineralsData = await facilityMinerals()
     // Find the specific facility mineral to subtract from
-    const facilityMineralToUpdate = facilityMinerals.find(fm => fm.mineralId === transientState.mineralId && fm.facilityId === transientState.facilityId);
-
-    // Find the specific colony mineral to add to
-    const colonyMineralToUpdate = colonyMinerals.find(cm => cm.mineralId === transientState.mineralId && cm.colonyId === transientState.colonyId);
+    const facilityMineralToUpdate = facilityMineralsData.find(fm => fm.mineralId === transientState.mineralId && fm.facilityId === transientState.facilityId);
 
     // Update the facility mineral quantity
     const facilityOptions = {
@@ -95,6 +94,14 @@ export const purchaseMineral = async () => {
 
     // Dispatch event to indicate state change
     document.dispatchEvent(new CustomEvent("stateChanged"));
+
+    // Update the DOM for mineral quantities
+    await updateColonyMineralsDOM()
+    await updateFacilityMineralsDOM()
+
+    // Clear the selected mineral and amount
+    transientState.mineralId = 0
+    transientState.amount = 0
 
     console.log('Mineral transfer successful.');
 };

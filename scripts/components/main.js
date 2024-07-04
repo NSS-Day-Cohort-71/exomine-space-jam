@@ -62,7 +62,7 @@ const render = async () => {
 
 document.addEventListener("stateChanged", async event => {
     console.log("Updating")
-    render()
+    await render()
 })
 
 render()
