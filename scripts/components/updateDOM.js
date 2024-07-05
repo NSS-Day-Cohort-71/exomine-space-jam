@@ -18,7 +18,7 @@ export const updateColonyMineralsDOM = async () => {
     mineralsContainer.innerHTML = `
         <h2>${colony.name} Minerals</h2>
         <ul>
-            ${filteredMinerals.map(cm => `<li>${cm.quantity} tons of ${cm.mineral.type}</li>`).join("")}
+            ${filteredMinerals.map(cm => `<ul>${cm.quantity} tons of ${cm.mineral.type}</ul>`).join("")}
         </ul>
     `
 }
@@ -44,14 +44,14 @@ export const updateFacilityMineralsDOM = async () => {
         <h2 id="facilityMineralsTitle">Facility Minerals${facility ? ` for ${facility.name}` : ''}</h2>
         <ul>
             ${filteredMinerals.map(fm => `
-                <li>
+                <ul>
                     <input type="radio" 
                             name="mineral" 
                             value="${fm.mineral.id}" 
                             id="mineral${fm.mineral.id}" ${fm.mineral.id == currentSelection ? 'checked' : ''}
                     >
                     <label for="mineral${fm.mineral.id}">${fm.quantity} tons of ${fm.mineral.type}</label>
-                </li>
+                </ul>
             `).join("")}
         </ul>
     `

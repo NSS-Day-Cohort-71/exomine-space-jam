@@ -42,7 +42,7 @@ export const handleGovernorDropdownChange = async () => {
         mineralsContainer.innerHTML = `
             <h2>${governor.colony.name} Minerals</h2>
             <ul>
-                ${colonyMinerals.map(cm => `<li>${cm.quantity} tons of ${cm.mineral}</li>`).join("")}
+                ${colonyMinerals.map(cm => `<ul>${cm.quantity} tons of ${cm.mineral}</ul>`).join("")}
             </ul>
         `
         
