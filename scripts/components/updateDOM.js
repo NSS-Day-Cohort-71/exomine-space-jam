@@ -45,12 +45,13 @@ export const updateFacilityMineralsDOM = async () => {
         <ul>
             ${filteredMinerals.map(fm => `
                 <ul>
-                    <input type="radio" 
+                    ${fm.quantity > 0 ? `<input type="radio" 
                             name="mineral" 
                             value="${fm.mineral.id}" 
                             id="mineral${fm.mineral.id}" ${fm.mineral.id == currentSelection ? 'checked' : ''}
                     >
-                    <label for="mineral${fm.mineral.id}">${fm.quantity} tons of ${fm.mineral.type}</label>
+                    <label for="mineral${fm.mineral.id}">${fm.quantity} tons of ${fm.mineral.type}</label>`
+                    : `<label>${fm.quantity} tons of ${fm.mineral.type}</label>`}
                 </ul>
             `).join("")}
         </ul>
