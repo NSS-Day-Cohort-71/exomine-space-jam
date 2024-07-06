@@ -12,7 +12,7 @@ export const facilityMineralOptions = async (facilityId) => {
     const facilityMinerals = await response.json();
 
     const facility = facilityMinerals.find(fm => fm.facilityId === facilityId)?.facility
-    const matchedMinerals = facilityMinerals.filter(fm => fm.facilityId === facilityId );
+    const matchedMinerals = facilityMinerals.filter(fm => fm.facilityId === facilityId);
     
     let mineralsHTML = `<h2 id="facilityMineralsTitle">Facility Minerals` 
     if (facility) {
