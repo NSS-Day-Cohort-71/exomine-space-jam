@@ -1,9 +1,13 @@
-import { setMineral } from "./TransientState.js";
+import { setMineral, transientState } from "./TransientState.js";
+import { updateSpaceCart } from "./spaceCart.js";
 
 const handleMineralChoice = async (event) => {
     if (event.target.name === "mineral") {
         const mineral = parseInt(event.target.value)
         setMineral(mineral)
+
+        // Call updateSpaceCart with the selected mineral and facilityIDs
+        updateSpaceCart(mineral, transientState.facilityId)
     }
 }
 
