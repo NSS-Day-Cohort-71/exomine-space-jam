@@ -1,0 +1,44 @@
+/* Visual styling */
+body {
+    background-image: url('https://images.unsplash.com/photo-1610302521242-ce3cbe33f60e?q=80&w=2536&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-size: cover;
+    background-repeat: repeat;
+    background-position: center;
+}
+
+h1 {
+    color: #E3C990;
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7);
+}
+
+.header-logo {
+    background-color: #E49F40;
+    box-shadow: 5px 5px 10px rgb(82, 82, 82);
+    opacity: 0.9;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+h2 {
+    color: #2A2C38;
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7);
+}
+
+#title {
+    color: white;
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7);
+}
+
+#colonyDetails, #facilityDetails, #theSpaceCartSection {
+    background-color: #E49F40;
+    box-shadow: 5px 5px 10px rgb(82, 82, 82);
+    opacity: 0.9;
+}
+
+select {
+    color: #2A2C38;
+    background-color: #E49F40;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}

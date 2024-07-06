@@ -1,16 +1,14 @@
+@import url("../styles/details.css");
+
 /* General styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-image: url('https://images.unsplash.com/photo-1610302521242-ce3cbe33f60e?q=80&w=2536&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-    background-size: cover;
-    background-repeat: repeat;
-    background-position: center;
 }
 
 /* Container for the entire layout */
-#container {
+#mainContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,83 +16,111 @@ body {
     margin: 0 auto;
 }
 
-/* Header section */
-h1 {
-    text-align: center;
-    width: 100%;
-    margin: 20px 0;
-    color: #E3C990;
-    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7);
+.logo {
+    margin-right: 10px;
+    width: 100px;
+    height: auto;
+  }
+
+.header-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    margin: 1rem;
 }
-h2 {
+
+/* Header sections */
+h1, h2 {
     text-align: center;
     width: 100%;
+}
+
+h1 {
     margin: 20px 0;
-    color: #2A2C38;
-    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7);
 }
 
 #title {
-    color: white;
-    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7);
     margin-left: 2rem;
 }
 
 /* Governors list and facility sections */
+#container {
+    display: flex;
+    flex-direction: row;
+    max-width: 1200px;
+    margin: 10px auto;
+    padding: 20px;
+}
+
 #mainContent {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    flex-direction: column;
     width: 100%;
+    padding-right: 3rem;
 }
 
-/* #governors__list, #facility {
-    width: 48%;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-} */
-
-/* Colony details section */
-#colonyDetails {
-    width: 48%;
-    margin-left: auto;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    margin: 20px;
-    background-color: white;
-    box-shadow: 5px 5px 10px rgb(82, 82, 82);
-    opacity: 0.9;
+#governors__list, #facility {
+    padding: 10px;
 }
 
+select {
+    width: 100%;
+    padding: 10px;
+}
+
+/* Colony and facility details sections */
 #colonyDetails, #facilityDetails {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 20px;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 10px;
-    margin: 20px;
-    text-align: center; /* Center text content */
-    background-color: #E49F40;
-    box-shadow: 5px 5px 10px rgb(82, 82, 82);
-    opacity: 0.9;
+    text-align: center;
+}
+
+#colonyDetails {
+    width: 100%;
+    margin-top: 20px;
+}
+
+#colonyDetails h2, #facilityDetails h2 {
+    margin: 0px auto;
+    text-align: center;
+}
+
+#colonyDetails ul {
+    padding: 0;
+    text-align: center;
+}
+
+#colonyDetails li {
+    margin-bottom: 5px; /* Adjust spacing between list items */
 }
 
 #mineralsList {
-    width: 100%;
-    text-align: center; /* Center text content within mineralsList */
+    width: auto;
+    text-align: center; 
 }
-
 
 /* Facility details and space cart sections */
 #lowerContent {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 #facilityDetails {
     width: 66%;
-    border: 1px solid #ccc;
+    margin: 20px 0;
+}
+
+#facilityDetails h2 {
+    margin: 20px 0; /* Adjust margin for spacing */
 }
 
 #theSpaceCartSection {
@@ -109,10 +135,6 @@ h2 {
     margin: 20px;
     height: 100%; /* Ensure the section takes full height available */
     text-align: center; /* Center text content */
-    background-color: #E49F40;
-    box-shadow: 5px 5px 10px rgb(82, 82, 82);
-    opacity: 0.9;
-    
 }
 
 #spaceCart {
@@ -127,33 +149,4 @@ h2 {
     width: 100%; /* Ensure container spans full width for centering */
     margin-top: auto; /* Push the button to the bottom */
 }
-
-select {
-    color: #2A2C38;
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    background-color: #E49F40;
-    border-radius: 4px;
-    font-size: 1em;
-}
-
-.logo {
-    margin-right: 10px;
-    width: 100px;
-    height: auto;
-  }
-
-  .header-logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background-color: #E49F40;
-    box-shadow: 5px 5px 10px rgb(82, 82, 82);
-    opacity: 0.9;
-    margin: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-  }
 
